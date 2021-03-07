@@ -2,15 +2,27 @@
 
 <h1>Books Library</h1>
 
-<table>
+<%= form_with url: 'books', method: :get do |form| %>
+  <div>
+    <%=form.label :query, "Filtrar libros:" %>
+    <%= form.select :status, [
+      ["Todos", :all],
+      ["En estante", :shelf], ["Prestado", :lent]
+    ],{selected: params[:status]}, class:'form-control' %>
+  </div>
+  <br>
+  <%= form.submit "Buscar" %>
+<% end %>
+<br>
+<table class='table'>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Status</th>
-      <th>Checkout</th>
-      <th>Checkin</th>
-      <th colspan="3"></th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Status</th>
+      <th scope="col">Checkin</th>
+      <th scope="col">Checkout</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 

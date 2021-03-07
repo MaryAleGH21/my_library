@@ -3,7 +3,10 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.all
+    @books = Book.all.order(title: :asc)
+    if params[:status] and params[:status] != 'all'
+      @books = @books.where(status: params[:status]).order(title: :asc)
+    end
   end
 
   # GET /books/1 or /books/1.json
@@ -59,7 +62,11 @@ class BooksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params[:id])
+       begin
+        @book = Book.find(params[:id])
+      rescue ActiveRecord::RecordNotFound => e
+        redirect_to books_url, notice: "ERROR: Libro no encontrado"
+      end
     end
 
     # Only allow a list of trusted parameters through.
