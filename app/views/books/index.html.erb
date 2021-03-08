@@ -11,17 +11,19 @@
     ],{selected: params[:status]}, class:'form-control' %>
   </div>
   <br>
-  <%= form.submit "Buscar" %>
+  <%= form.submit "Search", class: 'btn btn-info' %>
 <% end %>
 <br>
-<table class='table'>
+<table class='table my-5'>
   <thead>
     <tr>
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Status</th>
+      <th scope="col">Lended_to</th>
       <th scope="col">Checkin</th>
       <th scope="col">Checkout</th>
+      
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -32,6 +34,7 @@
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.status %></td>
+        <td><%= book.lended_to %></td>
         <td><%= book.checkout %></td>
         <td><%= book.checkin %></td>
         <td><%= link_to 'Show', book %></td>
@@ -42,6 +45,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Book', new_book_path %>
+<div class='my-5 text-center'>
+<%= link_to 'New Book', new_book_path, class: 'btn btn-info text-white' %>
+</div>

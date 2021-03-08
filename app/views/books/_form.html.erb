@@ -11,32 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+  <%= form.text_field :title, class:'form-control', placeholder: 'Título' %><br>
+  <%= form.text_field :author, class:'form-control', placeholder: 'Autor' %><br>
+  <%= form.select :status, [["En estante", :shelf], ["Prestado", :lent]], {selected: params[:status]}, class:'form-control', placeholder: 'Status' %><br>
+  <%= form.label :checkout %>
+  <%= form.text_field :lended_to, class:'form-control', placeholder: 'Prestado a:' %><br>
+  <%= form.date_field :checkout, class:'form-control' %><br>
+  <%= form.label :checkin %>
+  <%= form.date_field :checkin, class:'form-control' %>
 
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author %>
+  <br><br>
+  <div class="text-center">
+  <%= form.submit 'Submit', class: 'actions btn btn-info text-white' %>
   </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :checkout %>
-    <%= form.date_select :checkout %>
-  </div>
-
-  <div class="field">
-    <%= form.label :checkin %>
-    <%= form.date_select :checkin %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <br>
 <% end %>
